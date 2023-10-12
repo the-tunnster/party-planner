@@ -1,7 +1,8 @@
 import streamlit
 streamlit.set_page_config(
     page_title="Rules&Notices",
-    page_icon=":scales:"
+	page_icon="⚖",
+	layout="wide"
 )
 
 streamlit.markdown("""
@@ -15,10 +16,10 @@ streamlit.markdown("""
 ---
 				   
 ## Notices and Info.
-				   
-There is a theme; <theme_name>.
-It is not required to be followed, however, there is a prize for the most accurate.
-	
 
+<p>
+There is a theme; <theme_name>. <br>
+It is not required to be followed, however, there is a prize for the most accurate. <br>
+<p>
 				   
 """, unsafe_allow_html=True)

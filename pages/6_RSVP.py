@@ -1,22 +1,27 @@
 import streamlit
-
 from utility.utility import *
 
 streamlit.set_page_config(
 	page_title="RSVP.",
-	page_icon=":heavy_check_mark:"
+	page_icon="✔",
+	layout="wide"
 )
 
 streamlit.markdown("""
 
 ## Introduction.
-				   
-This is where you actually RSVP for the party.
-Fill in the form as you see fit, and don't feel pressured to volunteer.
 
+<p>	   
+This is where you actually RSVP for the party. <br>
+Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
+<p>
+
+<p>
 If you have already RSVP'd, resubmitting will update your information instead.
+<p>
 				   
-""")
+""", unsafe_allow_html=True)
+streamlit.divider()
 
 guest_name = streamlit.text_input(label="Enter your first name.", placeholder="first_name").lower()
 
@@ -57,7 +62,7 @@ if submitted:
 		insert_data("mixers", [[guest_name, mixer_preference, mixer_amount]])
 		insert_data("transportation", [[guest_name, transportation_self, transportation_others]])
 
-		streamlit.write("Thanks for the RSVP.")
+		streamlit.success("Thanks for the RSVP.")
 
 	else:
 		update_data("food", guest_name, [[guest_name, food_item, food_category, vegetarian]])
@@ -66,6 +71,6 @@ if submitted:
 		update_data("mixers", guest_name, [[guest_name, mixer_preference, mixer_amount]])
 		update_data("transportation", guest_name, [[guest_name, transportation_self, transportation_others]])
 
-		streamlit.write("You have updated your RSVP.")
+		streamlit.success("You have updated your RSVP.")
 
 	

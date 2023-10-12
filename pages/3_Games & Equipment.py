@@ -1,8 +1,9 @@
 import streamlit
 
 streamlit.set_page_config(
-    page_title="Games&Equipment.",
-	page_icon=":slot_machine:"
+    page_title="Games&Equipment",
+	page_icon="🎰",
+	layout="wide"
 )
 
 streamlit.markdown("""

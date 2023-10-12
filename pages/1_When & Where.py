@@ -1,8 +1,9 @@
 import streamlit
 
 streamlit.set_page_config(
-	page_title="When, Where & How.",
-	page_icon=":world_map: :calendar:"
+	page_title="When&Where",
+	page_icon="📅 🗺",
+	layout="wide"
 	)
 
 streamlit.markdown("""
