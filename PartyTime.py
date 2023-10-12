@@ -8,21 +8,24 @@ streamlit.set_page_config(
 streamlit.markdown("""
 				   	
 ## The Intro.
-				   
-I'm throwing a party, and you've been invited.
-				   
-This is just an over-engineered event invitation system.
-				   
-So yeah, enjoy.
-				   
-Hope to see you there.
 
+<p>  
+I'm throwing a party, and you've been invited. <br>		   
+This is just an over-engineered event invitation system. <br>
+<p>
+
+<p>
+So yeah, enjoy. <br>				   
+Hope to see you there. <br>
+<p>
+				   
 ---	   
 		   	
 ## Basic Guide.
 				   
-All the tabs in the sidebar are self-explanotory.
-				   
+<p>	   
+All the tabs in the sidebar are self-explanotory. <br> 
 If you can't figure it out though, LoL and hit me up on a call.
-				   
-""")
+<p>
+				   				   
+""", unsafe_allow_html=True)

@@ -8,15 +8,18 @@ streamlit.set_page_config(
 
 streamlit.markdown("""
 
-## Introduction.
-				   
-	I'm bringing food for everyone, and some booze and mixers.
-	However, I doubt it'll be enough booze to cover everyone's needs and wants.
-				   
-	Check the table below for what's being brought and by whom.
-	You can contribute to the stock when you RSVP, or not, it's up to you.
+## Intro.
+<p>				   
+I'm bringing food for everyone, and some booze and mixers. <br>   
+However, I doubt it'll be enough booze to cover everyone's needs and wants.
+<p>
 
-""")
+<p>			   
+Check the table below for what's being brought and by whom. <br>	   
+You can contribute to the stock when you RSVP, or not, it's up to you.
+<p>
+				   
+""", unsafe_allow_html=True)
 
 food_dataFrame = pandas.read_csv("data/food.csv")
 liquor_dataFrame = pandas.read_csv("data/liquor.csv")
