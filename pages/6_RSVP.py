@@ -17,7 +17,8 @@ Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
 <p>
 
 <p>
-If you have already RSVP'd, resubmitting will update your information instead.
+If you have already RSVP'd, resubmitting will update your information instead. <br>
+Only the toggled fields will be adde, so if you're updating somehting, only toggle that. <br>t
 <p>
 				   
 """, unsafe_allow_html=True)
@@ -37,14 +38,25 @@ else:
 	food_category = None
 	vegetarian = None
 
+streamlit.write("Would you like to bring liquor & mixers?")
+liquor_mixers = streamlit.toggle(label="L", label_visibility="hidden")
+
 liquor_options=["vodka", "rum", "gin", "whiskey", "bourbon", "wine", "teqiula", "brandy/cognac", "none"]	
-liquor_preference = streamlit.selectbox(label="What liquor will you drink/bring along?", options=liquor_options)
-liquor_amount = streamlit.number_input(label="Volume of liquor you're bringing.", value=0, format="%d")
-
 mixer_options=["coca-cola/thums_up/pepsi", "sprite/7_up", "red_bull", "diet/sugar_free", "none"]
-mixer_preference = streamlit.selectbox(label="What mixers will you bring along?", options=mixer_options)
-mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing.", value=0, format="%d")
 
+if liquor_mixers :
+	liquor_preference = streamlit.selectbox(label="What liquor will you drink/bring along?", options=liquor_options)
+	liquor_amount = streamlit.number_input(label="Volume of liquor you're bringing, in litres.", value=0, format="%d")
+
+	mixer_preference = streamlit.selectbox(label="What mixers will you bring along?", options=mixer_options)
+	mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing.", value=0, format="%d")
+else:
+	liquor_preference = None
+	liquor_amount = None
+
+	mixer_preference = None
+	mixer_amount = None
+	
 transportation_self = streamlit.selectbox(label="Can you arrange getting to the location?", options=("yes", "no"))
 transportation_others = streamlit.number_input(label="If you have your own vehicle, how many people could you bring along, if required?", value=0, format="%d")
 
@@ -56,20 +68,24 @@ if submitted:
 	exists = check_exists(guest_name)
 
 	if not exists:
-		insert_data("food", [[guest_name, food_item, food_category, vegetarian]])
 		insert_data("guests", [[guest_name, status]])
-		insert_data("liquor", [[guest_name, liquor_preference, liquor_amount]])
-		insert_data("mixers", [[guest_name, mixer_preference, mixer_amount]])
 		insert_data("transportation", [[guest_name, transportation_self, transportation_others]])
+		if food:
+			insert_data("food", [[guest_name, food_item, food_category, vegetarian]])
+		if liquor_mixers:
+			insert_data("liquor", [[guest_name, liquor_preference, liquor_amount]])
+			insert_data("mixers", [[guest_name, mixer_preference, mixer_amount]])
 
 		streamlit.success("Thanks for the RSVP.")
 
 	else:
-		update_data("food", guest_name, [[guest_name, food_item, food_category, vegetarian]])
 		update_data("guests", guest_name, [[guest_name, status]])
-		update_data("liquor", guest_name, [[guest_name, liquor_preference, liquor_amount]])
-		update_data("mixers", guest_name, [[guest_name, mixer_preference, mixer_amount]])
 		update_data("transportation", guest_name, [[guest_name, transportation_self, transportation_others]])
+		if food:
+			update_data("food", guest_name, [[guest_name, food_item, food_category, vegetarian]])
+		if liquor_mixers:
+			update_data("liquor", guest_name, [[guest_name, liquor_preference, liquor_amount]])
+			update_data("mixers", guest_name, [[guest_name, mixer_preference, mixer_amount]])
 
 		streamlit.success("You have updated your RSVP.")
 
