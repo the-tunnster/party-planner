@@ -1,0 +1,12 @@
+version: "1.0"
+services: 
+  partytime-database:
+    container_name: mysql-db
+    image: mysql
+    volumes: 
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: db_password
+      MYSQL_DATABASE: partyDB
+    ports: 
+      - "3306:3306"
