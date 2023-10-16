@@ -1,26 +1,62 @@
-import pandas
+from database import cursor
 
-def load_dataset(file_name : str):
-	dataFrame = pandas.read_csv(f"data/{file_name}.csv", header=0, sep=",")
-	return (dataFrame)
+def load_data(table_name):
+	query = f"SELECT * from {table_name};"
+	cursor.execute(query)
+	data = cursor.fetchall()
+	return (data)
 
-def check_exists(guest_name : str):
-	guest_dataFrame = pandas.read_csv("data/guests.csv", header=0)
-
-	exists = False
-	for i in range(len(guest_dataFrame)):
-		if guest_name == guest_dataFrame["guest_name"][i]:
-			exists = True
-			break
+def check_guest_exists(guest_name, cursor):
+	query = f"""SELECT * FROM guests
+				WHERE guest_name = {guest_name};"""
 	
-	return (exists)
+	cursor.execute(query)
+	data = cursor.fetchall()
 
-def insert_data(file_name, args):
-	dataFrame = pandas.DataFrame(args)
-	dataFrame.to_csv(f"data/{file_name}.csv", mode='a', index=False, header=False)
+	if len(data) > 0:
+		return True
+	
+	return False
+
+def insert_data_guests(cursor, guest_name, status):
+	query = f"""
+			INSERT INTO guests
+				VALUES({guest_name}, {status});
+			"""
+	cursor.execute(query)
 	return (None)
 
-import pandas as pd
+def insert_data_transportation(cursor, guest_name, transportation_self, transportation_others):
+	query = f"""
+			INSERT INTO transportation
+				VALUES({guest_name}, {transportation_self}, {transportation_others});
+			"""
+	cursor.execute(query)
+	return (None)
+
+def insert_data_food(cursor, guest_name, food_item, food_category, vegetarian):
+	query = f"""
+			INSERT INTO food
+				VALUES({guest_name}, {food_item}, {food_category}, {vegetarian});
+			"""
+	cursor.execute(query)
+	return (None)
+
+def insert_data_liquor(cursor, guest_name, liquor_preference, liquor_amount):
+	query = f"""
+			INSERT INTO liquor
+				VALUES({guest_name}, {liquor_preference}, {liquor_amount});
+			"""
+	cursor.execute(query)
+	return (None)
+
+def insert_data_mixers(cursor, guest_name, mixer_preference, mixer_amount):
+	query = f"""
+			INSERT INTO liquor
+				VALUES({guest_name}, {mixer_preference}, {mixer_amount});
+			"""
+	cursor.execute(query)
+	return (None)
 
 def update_data(file_name, guest_name, args):
     dataFrame = pd.read_csv(f"data/{file_name}.csv", header=0, sep=",")
