@@ -65,16 +65,16 @@ status = streamlit.selectbox(label="Are you confirmed to show up or not?", optio
 submitted = streamlit.button("Submit")
 
 if submitted:
-	exists = check_exists(guest_name)
+	exists = check_guest_exists(guest_name)
 
 	if not exists:
-		insert_data("guests", [[guest_name, status]])
-		insert_data("transportation", [[guest_name, transportation_self, transportation_others]])
+		insert_data_guests(cursor, guest_name, status)
+		insert_data_transportation(cursor, guest_name, transportation_self, transportation_others)
 		if food:
-			insert_data("food", [[guest_name, food_item, food_category, vegetarian]])
+			insert_data_food(cursor, guest_name, food_item, food_category, vegetarian)
 		if liquor_mixers:
-			insert_data("liquor", [[guest_name, liquor_preference, liquor_amount]])
-			insert_data("mixers", [[guest_name, mixer_preference, mixer_amount]])
+			insert_data_liquor(cursor, guest_name, liquor_preference, liquor_amount)
+			insert_data_mixers(cursor, guest_name, mixer_preference, mixer_amount)
 
 		streamlit.success("Thanks for the RSVP.")
 
