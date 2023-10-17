@@ -6,7 +6,10 @@ services:
     volumes: 
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: db_password
-      MYSQL_DATABASE: partyDB
+      MYSQL_ROOT_PASSWORD: "root_password"
+      MYSQL_DATABASE: "partyDB"
+      MYSQL_BIND_ADDRESS: "0.0.0.0"
     ports: 
       - "3306:3306"
+    expose:
+      - "3306"
