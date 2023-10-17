@@ -1,5 +1,5 @@
 import streamlit
-from utility.utility import *
+from database.select import *
 
 streamlit.set_page_config(
     page_title="Food&Drinks",
@@ -22,10 +22,10 @@ You can contribute to the stock when you RSVP, or not, it's up to you.
 """, unsafe_allow_html=True)
 streamlit.divider()
 
-food_dataFrame = load_dataset("food")
-liquor_dataFrame = load_dataset("liquor")
-mixers_dataFrame = load_dataset("mixers")
-transportation_dataFrame = load_dataset("transportation")
+food_dataFrame = load_data("food")
+liquor_dataFrame = load_data("liquor")
+mixers_dataFrame = load_data("mixers")
+transportation_dataFrame = load_data("transportation")
 
 streamlit.markdown("### Food.")
 streamlit.dataframe(food_dataFrame,

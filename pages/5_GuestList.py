@@ -1,5 +1,5 @@
 import streamlit
-from utility.utility import *
+from database.select import *
 
 streamlit.set_page_config(
 	page_title="TheGuestList.",
@@ -17,10 +17,7 @@ We thank them for their efforts.<br>
 
 """, unsafe_allow_html=True)
 
-guest_dataFrame = load_dataset("guests")
-#mask = guest_dataFrame["confirmed"] == "yes"
-
-#guest_dataFrame = guest_dataFrame[mask]
+guest_dataFrame = load_data("guests")
 
 streamlit.dataframe(guest_dataFrame,
 					hide_index=True,

@@ -1,5 +1,8 @@
 import streamlit
-from utility.utility import *
+
+from database.select import *
+from database.insert import *
+from database.update import *
 
 streamlit.set_page_config(
 	page_title="RSVP.",
@@ -18,7 +21,7 @@ Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
 
 <p>
 If you have already RSVP'd, resubmitting will update your information instead. <br>
-Only the toggled fields will be adde, so if you're updating somehting, only toggle that. <br>t
+Only the toggled fields will be adde, so if you're updating somehting, only toggle that. <br>
 <p>
 				   
 """, unsafe_allow_html=True)
@@ -60,7 +63,7 @@ else:
 transportation_self = streamlit.selectbox(label="Can you arrange getting to the location?", options=("yes", "no"))
 transportation_others = streamlit.number_input(label="If you have your own vehicle, how many people could you bring along, if required?", value=0, format="%d")
 
-status = streamlit.selectbox(label="Are you confirmed to show up or not?", options=("yes", "no", "maybe"))
+confirmed = streamlit.selectbox(label="Are you confirmed to show up or not?", options=("yes", "no", "maybe"))
 
 submitted = streamlit.button("Submit")
 
@@ -68,24 +71,24 @@ if submitted:
 	exists = check_guest_exists(guest_name)
 
 	if not exists:
-		insert_data_guests(cursor, guest_name, status)
-		insert_data_transportation(cursor, guest_name, transportation_self, transportation_others)
+		insert_data_guests(guest_name, confirmed)
+		insert_data_transportation(guest_name, transportation_self, transportation_others)
 		if food:
-			insert_data_food(cursor, guest_name, food_item, food_category, vegetarian)
+			insert_data_food(guest_name, food_item, food_category, vegetarian)
 		if liquor_mixers:
-			insert_data_liquor(cursor, guest_name, liquor_preference, liquor_amount)
-			insert_data_mixers(cursor, guest_name, mixer_preference, mixer_amount)
+			insert_data_liquor(guest_name, liquor_preference, liquor_amount)
+			insert_data_mixers(guest_name, mixer_preference, mixer_amount)
 
 		streamlit.success("Thanks for the RSVP.")
 
 	else:
-		update_data("guests", guest_name, [[guest_name, status]])
-		update_data("transportation", guest_name, [[guest_name, transportation_self, transportation_others]])
+		update_data_guests(guest_name, confirmed)
+		update_data_transportation(guest_name, transportation_self, transportation_others)
 		if food:
-			update_data("food", guest_name, [[guest_name, food_item, food_category, vegetarian]])
+			update_data_food(guest_name, food_item, food_category, vegetarian)
 		if liquor_mixers:
-			update_data("liquor", guest_name, [[guest_name, liquor_preference, liquor_amount]])
-			update_data("mixers", guest_name, [[guest_name, mixer_preference, mixer_amount]])
+			update_data_liquor(guest_name, liquor_preference, liquor_amount)
+			update_data_mixers(guest_name, mixer_preference, mixer_amount)
 
 		streamlit.success("You have updated your RSVP.")
 
