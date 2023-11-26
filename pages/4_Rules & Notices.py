@@ -11,7 +11,8 @@ streamlit.markdown("""
 				   
 1. Don't be that guy. If you don't know, someone will let you know.
 2. No hard drugs, please.
-3. You break it, you at least offer to replace and I'll politely tell you its fine.
+3. No bongs. Hand rolled __cigarettes__ are fine.
+4. You break it, you at least offer to replace and I'll politely tell you its fine.
 				   
 ---
 				   
