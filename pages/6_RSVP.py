@@ -1,3 +1,4 @@
+import json
 import streamlit
 
 from database.select import *
@@ -27,7 +28,8 @@ Only the toggled fields will be adde, so if you're updating somehting, only togg
 """, unsafe_allow_html=True)
 streamlit.divider()
 
-guest_name = streamlit.text_input(label="Enter your first name.", placeholder="first_name").lower()
+guest_name = streamlit.text_input(label="Enter your first and last name.", placeholder="first_name last_name").lower()
+#plus_one = streamlit.selectbox(label="Are you bringing a plus one?", options=("yes", "no"))
 
 streamlit.write("Would you like to bring food?")
 food = streamlit.toggle(label="F", label_visibility="hidden")
@@ -44,8 +46,12 @@ else:
 streamlit.write("Would you like to bring liquor & mixers?")
 liquor_mixers = streamlit.toggle(label="L", label_visibility="hidden")
 
-liquor_options=["vodka", "rum", "gin", "whiskey", "bourbon", "wine", "teqiula", "brandy/cognac", "none"]	
-mixer_options=["coca-cola/thums_up/pepsi", "sprite/7_up", "red_bull", "diet/sugar_free", "none"]
+config_file = open("configs/drinks_mixers.json")
+options = json.load(config_file)
+config_file.close()
+
+liquor_options = options["liquor"]
+mixer_options = options["mixers"]
 
 if liquor_mixers :
 	liquor_preference = streamlit.selectbox(label="What liquor will you drink/bring along?", options=liquor_options)
