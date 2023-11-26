@@ -1,0 +1,16 @@
+{
+    "when": {
+        "date": "31/12/2023",
+        "time": "00:00 am/pm",
+        "duration": "Ya'll can stay for breakfast if you want"
+    },
+    "where": {
+        "address_line_1": "The Moon",
+        "address_line_2": "The Moon",
+        "suburb": "The Moon",
+        "city": "The Moon",
+        "state": "The Moon",
+        "zip": "00000",
+        "maps_url": "https://goo.gl/maps/1234567890"
+    }
+}

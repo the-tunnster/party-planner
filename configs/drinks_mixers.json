@@ -1,0 +1,4 @@
+{
+    "liquor": ["vodka", "rum", "gin", "whiskey", "bourbon", "wine", "teqiula", "brandy/cognac", "none"],
+    "mixers": ["coca-cola/thums_up/pepsi", "sprite/7_up", "red_bull", "diet/sugar_free", "none"]
+}
