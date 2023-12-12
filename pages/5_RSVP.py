@@ -22,14 +22,13 @@ Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
 
 <p>
 If you have already RSVP'd, resubmitting will update your information instead. <br>
-Only the toggled fields will be adde, so if you're updating somehting, only toggle that. <br>
+Only the toggled fields will be added, so if you're updating somehting, only toggle that. <br>
 <p>
 				   
 """, unsafe_allow_html=True)
 streamlit.divider()
 
 guest_name = streamlit.text_input(label="Enter your first and last name.", placeholder="first_name last_name").lower()
-#plus_one = streamlit.selectbox(label="Are you bringing a plus one?", options=("yes", "no"))
 
 streamlit.write("Would you like to bring food?")
 food = streamlit.toggle(label="F", label_visibility="hidden")
