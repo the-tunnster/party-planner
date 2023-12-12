@@ -1,0 +1,11 @@
+[client]
+showErrorDetails = false
+toolbarMode = "minimal"
+
+[runner]
+fastReruns = true
+
+[server]
+# baseUrlPath = "party-time"
+# sslCertFile = "./certificates/public.pem"
+# sslKeyFile = "private.key"
