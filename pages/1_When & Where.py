@@ -1,4 +1,5 @@
 import streamlit
+import json
 
 streamlit.set_page_config(
 	page_title="When&Where",
@@ -6,20 +7,28 @@ streamlit.set_page_config(
 	layout="wide"
 	)
 
-streamlit.markdown("""
-				   
+config_file = open("configs/when_where.json")
+when_and_where = json.load(config_file)
+config_file.close()
+
+when = when_and_where["when"]
+where = when_and_where["where"]
+
+streamlit.markdown(f"""
+                   
 ## When.
-	Day/Month/Year
-	HH:MM:00	
-	Duration
-				   
+	{when["date"]}
+	{when["time"]}
+	{when["duration"]}
+
 ---
 
 ## Where.
-	Address Line 1,
-	Address Line 2,
-	Suburb, City,
-	State - Postcode.
-				   
-	<maps.link.com>
-""")
+	{where["address_line_1"]}
+	{where["address_line_2"]}
+	{where["suburb"]}, {where["city"]}
+	{where["state"]} - {where["zip"]}.
+	
+	{where["maps_url"]}
+    
+""", unsafe_allow_html=True)
