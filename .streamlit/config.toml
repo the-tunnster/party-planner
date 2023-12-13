@@ -6,6 +6,7 @@ toolbarMode = "minimal"
 fastReruns = true
 
 [server]
-# baseUrlPath = "party-time"
-# sslCertFile = "./certificates/public.pem"
-# sslKeyFile = "private.key"
+baseUrlPath = "party-time"
+port = 8080
+sslCertFile = "./certificates/fullchain.pem"
+sslKeyFile = "./certificates/privkey.key"
