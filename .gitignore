@@ -1,0 +1,9 @@
+.vscode/
+
+**/**.pyc
+
+venv/
+data/
+certificates/
+
+**/pycache/**
