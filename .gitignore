@@ -7,3 +7,5 @@ data/
 certificates/
 
 **/pycache/**
+
+configs/**.json
