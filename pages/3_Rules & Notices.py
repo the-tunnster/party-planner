@@ -20,13 +20,13 @@ streamlit.markdown("""
 ## Notices and Info.
 
 <p>
-There is no specific theme, just make sure you're comfortable.  <br>
-Do remember to carry along the following :
-	1. Towel
-	2. Extra pair of clothes
-	3. Toiletries
-	4. Slippers
-	5. A pillow
+1. There is no specific theme, just make sure you're comfortable.  <br>
+2. Do remember to carry along the following : <br>
+	- Towel <br>
+	- Extra pair of clothes <br>
+	- Toiletries <br>
+	- Slippers <br>
+	- A pillow <br>
 <p>
 				   
 """, unsafe_allow_html=True)
