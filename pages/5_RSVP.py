@@ -18,6 +18,7 @@ streamlit.markdown("""
 <p>	   
 This is where you actually RSVP for the party. <br>
 Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
+The amounts are in litres, and you can enter decimals, so don't worry about that. <br>
 <p>
 
 <p>
@@ -28,7 +29,7 @@ Only the toggled fields will be added, so if you're updating somehting, only tog
 """, unsafe_allow_html=True)
 streamlit.divider()
 
-guest_name = streamlit.text_input(label="Enter your first and last name.", placeholder="first_name last_name").lower()
+guest_name = streamlit.text_input(label="Enter your first and last name.", placeholder="first_name last_name").lower().strip()
 
 streamlit.write("Would you like to bring food?")
 food = streamlit.toggle(label="F", label_visibility="hidden")
@@ -54,10 +55,10 @@ mixer_options = options["mixers"]
 
 if liquor_mixers :
 	liquor_preference = streamlit.selectbox(label="What liquor will you drink/bring along?", options=liquor_options)
-	liquor_amount = streamlit.number_input(label="Volume of liquor you're bringing, in litres.", value=0, format="%d")
+	liquor_amount = streamlit.number_input(label="Volume of liquor you're bringing, in litres.", value=0.0)
 
 	mixer_preference = streamlit.selectbox(label="What mixers will you bring along?", options=mixer_options)
-	mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing.", value=0, format="%d")
+	mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing.", value=0.0)
 else:
 	liquor_preference = None
 	liquor_amount = None
