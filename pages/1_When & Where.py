@@ -17,18 +17,18 @@ where = when_and_where["where"]
 streamlit.markdown(f"""
                    
 ## When.
-{when["date"]}
-{when["time"]}
-{when["duration"]}
+{when["date"]} <br>
+{when["time"]} <br>
+{when["duration"]} <br>
 
 ---
 
 ## Where.
-{where["address_line_1"]}
-{where["address_line_2"]}
-{where["suburb"]}, {where["city"]}
-{where["state"]} - {where["zip"]}.
-	
+{where["address_line_1"]}, <br>
+{where["address_line_2"]}, <br>
+{where["suburb"]}, {where["city"]}, <br>
+{where["state"]} - {where["zip"]}. <br>
+<br>
 {where["maps_url"]}
     
 """, unsafe_allow_html=True)
