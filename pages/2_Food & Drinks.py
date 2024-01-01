@@ -22,10 +22,20 @@ You can contribute to the stock when you RSVP, or not, it's up to you.
 """, unsafe_allow_html=True)
 streamlit.divider()
 
+guest_dataframe = load_data("guests")
+guest_list = guest_dataframe[guest_dataframe["confirmed"] == 'yes']["guest_name"].tolist()
+
 food_dataFrame = load_data("food")
+food_dataFrame = food_dataFrame[food_dataFrame["guest_name"].isin(guest_list)]
+
 liquor_dataFrame = load_data("liquor")
+liquor_dataFrame = liquor_dataFrame[liquor_dataFrame["guest_name"].isin(guest_list)]
+
 mixers_dataFrame = load_data("mixers")
+mixers_dataFrame = mixers_dataFrame[mixers_dataFrame["guest_name"].isin(guest_list)]
+
 transportation_dataFrame = load_data("transportation")
+transportation_dataFrame = transportation_dataFrame[transportation_dataFrame["guest_name"].isin(guest_list)]
 
 streamlit.markdown("### Food.")
 streamlit.dataframe(food_dataFrame,
