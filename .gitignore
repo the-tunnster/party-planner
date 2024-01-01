@@ -9,3 +9,4 @@ certificates/
 **/pycache/**
 
 configs/**.json
+configs/when_where.json
