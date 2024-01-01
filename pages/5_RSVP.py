@@ -29,7 +29,10 @@ Only the toggled fields will be added, so if you're updating somehting, only tog
 """, unsafe_allow_html=True)
 streamlit.divider()
 
-guest_name = streamlit.text_input(label="Enter your first and last name.", placeholder="first_name last_name").lower().strip()
+guest_name = streamlit.text_input(label="Enter the name for the RSVP.", placeholder="first_name last_name").lower().strip()
+if guest_name == "":
+	streamlit.warning("You cannot proceed without entering a name.")
+	streamlit.stop()
 
 streamlit.write("Would you like to bring food?")
 food = streamlit.toggle(label="F", label_visibility="hidden")
