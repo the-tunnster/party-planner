@@ -29,9 +29,11 @@ food_dataFrame = load_data("food")
 food_dataFrame = food_dataFrame[food_dataFrame["guest_name"].isin(guest_list)]
 
 liquor_dataFrame = load_data("liquor")
+liquor_dataFrame.rename(columns = {'liquor_amount':'volume_in_ml'}, inplace = True) 
 liquor_dataFrame = liquor_dataFrame[liquor_dataFrame["guest_name"].isin(guest_list)]
 
 mixers_dataFrame = load_data("mixers")
+mixers_dataFrame.rename(columns = {'mixer_amount':'volume_in_ml'}, inplace = True) 
 mixers_dataFrame = mixers_dataFrame[mixers_dataFrame["guest_name"].isin(guest_list)]
 
 transportation_dataFrame = load_data("transportation")
