@@ -10,3 +10,4 @@ certificates/
 
 configs/**.json
 configs/when_where.json
+util.py
