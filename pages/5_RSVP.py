@@ -18,7 +18,7 @@ streamlit.markdown("""
 <p>	   
 This is where you actually RSVP for the party. <br>
 Fill in the form as you see fit, and don't feel pressured to volunteer. <br>
-The amounts are in litres, and you can enter decimals, so don't worry about that. <br>
+The volumes are in millilitres, and you can enter decimals for the mixers, so don't worry about it. <br>
 <p>
 
 <p>
@@ -34,6 +34,8 @@ if guest_name == "":
 	streamlit.warning("You cannot proceed without entering a name.")
 	streamlit.stop()
 
+streamlit.divider()
+
 streamlit.write("Would you like to bring food?")
 food = streamlit.toggle(label="F", label_visibility="hidden")
 
@@ -46,6 +48,8 @@ else:
 	food_category = None
 	vegetarian = None
 
+streamlit.divider()
+
 streamlit.write("Would you like to bring liquor & mixers?")
 liquor_mixers = streamlit.toggle(label="L", label_visibility="hidden")
 
@@ -54,14 +58,16 @@ options = json.load(config_file)
 config_file.close()
 
 liquor_options = options["liquor"]
+liquor_volumes = [0.0, 180.0, 375.0, 750.0, 1000.0]
+
 mixer_options = options["mixers"]
 
 if liquor_mixers :
 	liquor_preference = streamlit.selectbox(label="What liquor will you drink/bring along?", options=liquor_options)
-	liquor_amount = streamlit.number_input(label="Volume of liquor you're bringing, in litres.", value=0.0)
+	liquor_amount = streamlit.selectbox(label="Volume of liquor you're bringing, in ml.", options=liquor_volumes)
 
 	mixer_preference = streamlit.selectbox(label="What mixers will you bring along?", options=mixer_options)
-	mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing.", value=0.0)
+	mixer_amount = streamlit.number_input(label="Volume of mixer you're bringing, in ml.", value=0.0)
 else:
 	liquor_preference = None
 	liquor_amount = None
@@ -69,8 +75,12 @@ else:
 	mixer_preference = None
 	mixer_amount = None
 	
+streamlit.divider()
+
 transportation_self = streamlit.selectbox(label="Can you arrange getting to the location?", options=("yes", "no"))
 transportation_others = streamlit.number_input(label="If you have your own vehicle, how many people could you bring along, if required?", value=0, format="%d")
+
+streamlit.divider()
 
 confirmed = streamlit.selectbox(label="Are you confirmed to show up or not?", options=("yes", "no", "maybe"))
 
