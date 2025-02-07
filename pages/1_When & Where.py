@@ -2,33 +2,36 @@ import streamlit
 import json
 
 streamlit.set_page_config(
-	page_title="When&Where",
-	page_icon="📅 🗺",
-	layout="wide"
-	)
+    page_title="When & Where",
+    page_icon="📅 🗺"
+)
 
-config_file = open("configs/when_where.json")
-when_and_where = json.load(config_file)
-config_file.close()
+# Load JSON Configs
+with open("configs/when.json") as config_when, open("configs/where.json") as config_where:
+    when = json.load(config_when)
+    where = json.load(config_where)
 
-when = when_and_where["when"]
-where = when_and_where["where"]
+streamlit.markdown("## 📅 When")
+streamlit.write(f"""
 
-streamlit.markdown(f"""
-                   
-## When.
-{when["date"]} <br>
-{when["time"]} <br>
-{when["duration"]} <br>
-
----
-
-## Where.
-{where["address_line_1"]}, <br>
-{where["address_line_2"]}, <br>
-{where["suburb"]}, {where["city"]}, <br>
-{where["state"]} - {where["zip"]}. <br>
+{when['date']} <br>
+{when['time']} <br>
 <br>
-{where["maps_url"]}
-    
+{when['duration']}
+                
 """, unsafe_allow_html=True)
+
+streamlit.divider()
+
+streamlit.markdown("## 📍 Where")
+streamlit.write(f"""
+
+{where['address_line_1']}, <br>
+{where['address_line_2']}, <br>
+{where['suburb']}, {where['city']}, <br>
+{where['state']} - {where['zip']}
+
+""", unsafe_allow_html=True)
+
+maps_url = f"https://www.google.com/maps/search/?api=1&query={where['latitude']},{where['longitude']}"
+streamlit.markdown(f"[Here's a maps link to make it simpler]({maps_url})", unsafe_allow_html=True)
