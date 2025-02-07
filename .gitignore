@@ -2,12 +2,10 @@
 
 **/**.pyc
 
-venv/
-data/
+.venv/
+data/**.json
 certificates/
 
 **/pycache/**
 
-configs/**.json
-configs/when_where.json
 util.py
