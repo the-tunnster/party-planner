@@ -1,9 +1,13 @@
 import streamlit
+from utilities.util import *
+
 streamlit.set_page_config(
     page_title="Rules&Notices",
-	page_icon="⚖",
-	layout="wide"
+	page_icon="⚖"
 )
+
+hideSidebar()
+actualSidebar()
 
 streamlit.markdown("""
 				   	
