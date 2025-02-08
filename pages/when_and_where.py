@@ -1,15 +1,16 @@
 import streamlit
-import json
+from utilities.util import *
 
 streamlit.set_page_config(
     page_title="When & Where",
     page_icon="📅 🗺"
 )
 
-# Load JSON Configs
-with open("configs/when.json") as config_when, open("configs/where.json") as config_where:
-    when = json.load(config_when)
-    where = json.load(config_where)
+hideSidebar()
+actualSidebar()
+
+when = getConfig("when")
+where =  getConfig("where")
 
 streamlit.markdown("## 📅 When")
 streamlit.write(f"""
