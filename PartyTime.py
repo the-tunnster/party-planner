@@ -1,9 +1,13 @@
-import streamlit
+import streamlit	
+from utilities.util import *
 
 streamlit.set_page_config(
 	page_title="PartyTime.",
 	page_icon=":ok_hand:"
 )
+
+hideSidebar()
+actualSidebar()
 
 streamlit.markdown("""
 				   	
