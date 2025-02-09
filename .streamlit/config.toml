@@ -7,9 +7,9 @@ fastReruns = true
 
 [server]
 #baseUrlPath = "party-time"
-port = 6969
-sslCertFile = "./certificates/fullchain.pem"
-sslKeyFile = "./certificates/privkey.key"
+#port = 6969
+#sslCertFile = "./certificates/fullchain.pem"
+#sslKeyFile = "./certificates/privkey.key"
 
 [theme]
 base="dark"
