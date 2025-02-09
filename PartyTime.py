@@ -9,6 +9,8 @@ streamlit.set_page_config(
 hideSidebar()
 actualSidebar()
 
+initialiseData()
+
 streamlit.markdown("""
 				   	
 ## The Intro.
