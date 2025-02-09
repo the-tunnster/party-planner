@@ -47,8 +47,11 @@ guest_data = getGuestData(guest_name)
 guest_data["food_toggle"] = bool(guest_data["food_item"])
 guest_data["liquor_toggle"] = bool(guest_data["liquor_preference"])
 
+if guest_data["food_item"] is None:
+	guest_data["food_item"] = ""
+
 food_categories = ("snacks", "mains", "dessert")
-if guest_data["food_category"] is "":
+if guest_data["food_category"] is None:
 	default_food_index = 0
 else:
 	default_food_index = food_categories.index(guest_data["food_category"])
@@ -57,8 +60,15 @@ liquor_options = getConfig("liquor")["options"]
 mixer_options = getConfig("mixers")["options"]
 volumes = [0.0, 60.0, 180.0, 375.0, 750.0, 1000.0]
 
-default_liquor_index = liquor_options.index(guest_data["liquor_preference"])
-default_mixer_index = mixer_options.index(guest_data["mixer_preference"])
+if guest_data["liquor_preference"] is None:
+	default_liquor_index = len(liquor_options) - 1
+else:
+	default_liquor_index = liquor_options.index(guest_data["liquor_preference"])
+
+if guest_data["mixer_preference"] is None:
+	default_mixer_index = len(mixer_options) - 1
+else:
+	default_mixer_index = mixer_options.index(guest_data["mixer_preference"])
 
 
 # ------------------------------------------------------------------------------

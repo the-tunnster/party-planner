@@ -138,11 +138,11 @@ def updateMixerData(guest_name, mixer_preference, mixer_amount):
 def getGuestData(guest_name):
 	if not checkGuestExists(guest_name):
 		return {
-			"food_item": "",
-			"food_category": "",
-			"liquor_preference": "none",
+			"food_item": None,
+			"food_category": None,
+			"liquor_preference": None,
 			"liquor_amount": 0.0,
-			"mixer_preference": "none",
+			"mixer_preference": None,
 			"mixer_amount": 0.0,
 			"status": "maybe"
 		}
@@ -151,3 +151,9 @@ def getGuestData(guest_name):
 		guests = json.load(file)
 		
 		return guests[guest_name]
+
+def getAllGuestData():
+	with open("data/rsvps.json", "r") as file:
+		guests = json.load(file)
+		
+		return guests
