@@ -157,3 +157,9 @@ def getAllGuestData():
 		guests = json.load(file)
 		
 		return guests
+
+def getDataFromFile(filename):
+	with open(f"data/{filename}.json", "r") as file:
+		data = json.load(file)
+		
+		return data
