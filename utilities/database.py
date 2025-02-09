@@ -1,13 +1,20 @@
 import json
+import os
 
 def checkGuestExists(guest_name):
-	with open("data/rsvps.json", "r") as file:
-		guests = json.load(file)
-		
-		if guest_name in guests:
-			return True
-		
+	file_path = "data/rsvps.json"
+
+	if not os.path.exists(file_path):
+		with open(file_path, 'w') as file:
+			json.dump({}, file)
 		return False
+
+	with open(file_path, "r") as file:
+		guests = json.load(file)
+		if not isinstance(guests, dict):
+			guests = {}
+
+	return guest_name in guests
 
 ############################################
 # Insert Functions
@@ -122,3 +129,25 @@ def updateMixerData(guest_name, mixer_preference, mixer_amount):
 		
 	with open("data/mixers.json", "w") as file:
 		json.dump(mixers, file, indent=4)
+
+
+############################################
+# Get Functions
+############################################
+
+def getGuestData(guest_name):
+	if not checkGuestExists(guest_name):
+		return {
+			"food_item": "",
+			"food_category": "",
+			"liquor_preference": "none",
+			"liquor_amount": 0.0,
+			"mixer_preference": "none",
+			"mixer_amount": 0.0,
+			"status": "maybe"
+		}
+	
+	with open("data/rsvps.json", "r") as file:
+		guests = json.load(file)
+		
+		return guests[guest_name]

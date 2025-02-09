@@ -1,5 +1,6 @@
 import streamlit
 import json
+import os
 
 def hideSidebar():
 	streamlit.markdown("""
@@ -28,3 +29,23 @@ def actualSidebar():
 def getConfig(config_name):
 	with open(f"configs/{config_name}.json") as config:
 		return json.load(config)
+
+def checkFileExists(file_name):
+	return os.path.exists(file_name)
+
+def initialiseData():
+	if not checkFileExists("data/rsvps.json"):
+		with open("data/rsvps.json", "w") as file:
+			json.dump({}, file, indent=4)
+
+	if not checkFileExists("data/food.json"):
+		with open("data/food.json", "w") as file:
+			json.dump({}, file, indent=4)
+	
+	if not checkFileExists("data/liquor.json"):
+		with open("data/liquor.json", "w") as file:
+			json.dump({}, file, indent=4)
+
+	if not checkFileExists("data/mixers.json"):
+		with open("data/mixers.json", "w") as file:
+			json.dump({}, file, indent=4)
