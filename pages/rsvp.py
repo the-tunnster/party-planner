@@ -51,7 +51,7 @@ if guest_data["food_item"] is None:
 	guest_data["food_item"] = ""
 
 food_categories = ("snacks", "mains", "dessert")
-if guest_data["food_category"] is None:
+if guest_data["food_category"] is None or guest_data["food_category"] == "":
 	default_food_index = 0
 else:
 	default_food_index = food_categories.index(guest_data["food_category"])
