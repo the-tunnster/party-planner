@@ -3,6 +3,7 @@
 **/**.pyc
 
 .venv/
+config/**.json
 data/**.json
 certificates/
 
