@@ -1,0 +1,20 @@
+{
+	"event_name": "Event Name",
+	"when": {
+		"start_date": "22/05/2026",
+		"start_time": "10:00 am",
+		"end_date": "25/05/2026",
+		"end_time": "10:00 pm"
+	},
+	"where": {
+		"address_line_1": "Villa 55, Della Resorts",
+		"address_line_2": "Kune Village Road",
+		"suburb": "Lovalava",
+		"city": "Pune",
+		"state": "Maharashtra",
+		"zip": "410401",
+		"maps_url": "https://goo.gl/maps/1234567890",
+		"latitude": 18.780722,
+		"longitude": 73.38975
+	}
+}

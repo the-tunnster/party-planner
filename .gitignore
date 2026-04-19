@@ -7,4 +7,6 @@ config/**.json
 data/**.json
 certificates/
 
-**/pycache/**
+party.db
+
+**/__pycache__/**

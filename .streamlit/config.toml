@@ -13,3 +13,8 @@ fastReruns = true
 
 [theme]
 base="dark"
+backgroundColor="black"
+font="monospace"
+
+[theme.sidebar]
+backgroundColor="#0f0f0f"

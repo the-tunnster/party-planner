@@ -1,0 +1,30 @@
+{
+    "liquors": [
+        "Absinthe",
+        "Beer",
+        "Brandy",
+        "Champagne",
+        "Cognac",
+        "Gin",
+        "Liqueur",
+        "Mezcal",
+        "Rum",
+        "Tequila",
+        "Vodka",
+        "Whiskey",
+        "Wine"
+    ],
+    "mixers": [
+        "Coca-Cola",
+        "Pepsi",
+        "Sprite",
+        "Red Bull",
+        "Diet Coke",
+        "Lemonade",
+        "Tonic Water",
+        "Soda Water",
+        "Ginger Ale",
+        "Orange Juice",
+        "Cranberry Juice"
+    ]
+}
