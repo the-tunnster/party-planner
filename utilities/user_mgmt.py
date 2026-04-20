@@ -1,8 +1,9 @@
+import streamlit as st
 from sqlalchemy.orm import joinedload
 from utilities.db import SessionLocal
 from models.user import User
 
-
+@st.cache_data(ttl=3600)
 def get_or_create_user(email: str, given_name: str, family_name: str) -> User:
     db = SessionLocal()
     try:

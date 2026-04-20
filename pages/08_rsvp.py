@@ -7,6 +7,7 @@ from typing import Any, cast
 from utilities.db import get_db
 from utilities.guards import require_login
 from utilities.volume import format_volume_label
+from utilities.util import getConfig
 
 from models.user import User
 from models.rsvp import RSVP, RSVPDay
@@ -23,17 +24,20 @@ current_user = require_login()
 st.write(f"Logged in as: **{current_user.firstname} {current_user.lastname} ({current_user.email})**")
 
 # Load Configurations
-with open(os.path.join("configs", "beverage_lists.json")) as f:
-    beverages = json.load(f)
-    liquors_list = beverages.get("liquors", [])
-    mixers_list = beverages.get("mixers", [])
+beverages = getConfig("beverage_lists")
+liquors_list = beverages.get("liquors", [])
+mixers_list = beverages.get("mixers", [])
 
-with open(os.path.join("configs", "when_and_where.json")) as f:
-    when_where = json.load(f)
-    event_days = ["Friday", "Saturday", "Sunday", "Monday"] # Mocked
+when_where = getConfig("when_and_where")
+event_days = ["Friday", "Saturday", "Sunday", "Monday"] # Mocked
 
 db = next(get_db())
 existing_user = db.query(User).filter(User.id == current_user.id).first()
+
+# Show success message if flag is set
+if st.session_state.pop("rsvp_success", False):
+    st.success("RSVP Saved Successfully! 🎉")
+    st.balloons()
 
 # Default form values
 default_status = "Tentative"
@@ -230,14 +234,19 @@ if submitted:
             
             # Refresh the logged-in session user
             from utilities.user_mgmt import get_or_create_user
+            get_or_create_user.clear(
+                email=str(current_user.email),
+                given_name=str(current_user.firstname),
+                family_name=str(current_user.lastname),
+            )
             st.session_state["user"] = get_or_create_user(
                 email=str(current_user.email),
                 given_name=str(current_user.firstname),
                 family_name=str(current_user.lastname),
             )
             
-            st.success("RSVP Saved Successfully! 🎉")
-            st.balloons()
+            st.session_state["rsvp_success"] = True
+            st.rerun()
         except Exception as e:
             db.rollback()
             st.error(f"An error occurred: {e}")
