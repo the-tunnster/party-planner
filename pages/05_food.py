@@ -53,12 +53,12 @@ else:
     st.subheader("Menu by Dish Type", anchor=False)
     summary_df = df_food.groupby(["Type", "Dish Name"])["Servings"].sum().reset_index()
     summary_df = summary_df.sort_values(by=["Type", "Servings"], ascending=[False, False])
-    st.dataframe(summary_df, use_container_width=True, hide_index=True)  # type: ignore
+    st.dataframe(summary_df, width='stretch', hide_index=True)  # type: ignore
 
     st.divider()
 
     # Detailed Overview
     st.subheader("Who is bringing what?", anchor=False)
     detailed_df = df_food[["Contributor", "Type", "Dish Name", "Servings"]]
-    st.dataframe(detailed_df, use_container_width=True, hide_index=True)  # type: ignore
+    st.dataframe(detailed_df, width='stretch', hide_index=True)  # type: ignore
 

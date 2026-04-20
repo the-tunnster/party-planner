@@ -56,11 +56,11 @@ if st.session_state.get("rsvp_hydrated_user") != current_user.email:
 # --------------------
 @st.dialog("Add a Food Dish")
 def add_food_dialog():
-    with st.form("add_food_form", clear_on_submit=True):
+    with st.form("add_food_form", clear_on_submit=True, enter_to_submit=False):
         ftype = st.selectbox("Food Type", FOOD_TYPE_OPTIONS)
         fname = st.text_input("Name of Dish")
         fservings = st.number_input("Servings", min_value=1, step=1, value=4)
-        if st.form_submit_button("Add Food", use_container_width=True):
+        if st.form_submit_button("Add Food", width='stretch'):
             if not fname.strip():
                 st.error("Please provide a name for the dish.")
             else:
@@ -69,12 +69,12 @@ def add_food_dialog():
 
 @st.dialog("Add Liquor")
 def add_liquor_dialog():
-    with st.form("add_liquor_form", clear_on_submit=True):
+    with st.form("add_liquor_form", clear_on_submit=True, enter_to_submit=False):
         ltype = st.selectbox("Liquor Type", liquors_list)
         lbrand = st.text_input("Brand", placeholder="e.g. Absolut")
         lvariant = st.text_input("Variant", value="Standard", placeholder="e.g. Citron")
         lvolume = st.selectbox("Volume", LIQUOR_VOLUME_OPTIONS, format_func=format_volume_label)
-        if st.form_submit_button("Add Liquor", use_container_width=True):
+        if st.form_submit_button("Add Liquor", width='stretch'):
             if not lbrand.strip():
                 st.error("Please provide a brand.")
             else:
@@ -88,11 +88,11 @@ def add_liquor_dialog():
 
 @st.dialog("Add Mixer")
 def add_mixer_dialog():
-    with st.form("add_mixer_form", clear_on_submit=True):
+    with st.form("add_mixer_form", clear_on_submit=True, enter_to_submit=False):
         mtype = st.selectbox("Mixer Type", mixers_list)
         mname = st.text_input("Brand / Flavor")
         mvolume = st.selectbox("Volume", MIXER_VOLUME_OPTIONS, format_func=format_volume_label)
-        if st.form_submit_button("Add Mixer", use_container_width=True):
+        if st.form_submit_button("Add Mixer", width='stretch'):
             if not mname.strip():
                 st.error("Please provide a name/flavor.")
             else:
@@ -128,14 +128,14 @@ foods = st.session_state["pending_foods"]
 if foods:
     df_food = pd.DataFrame(foods)
     df_food.columns = ["Type", "Name", "Servings"]
-    st.dataframe(df_food, use_container_width=True, hide_index=True)  # type: ignore
+    st.dataframe(df_food, width='stretch', hide_index=True)  # type: ignore
     if st.button("Remove Last Food", key="rm_food"):
         st.session_state["pending_foods"].pop()
         st.rerun()
 else:
     st.caption("No food contributions added yet.")
 
-if st.button("Add Food Dish", key="btn_add_food", use_container_width=True):
+if st.button("Add Food Dish", key="btn_add_food", width='stretch'):
     add_food_dialog()
 
 st.divider()
@@ -148,14 +148,14 @@ if liquors:
     df_liq["Volume"] = df_liq["volume"].apply(format_volume_label)
     df_liq = df_liq[["type", "brand", "variant", "Volume"]]
     df_liq.columns = ["Type", "Brand", "Variant", "Volume"]
-    st.dataframe(df_liq, use_container_width=True, hide_index=True)  # type: ignore
+    st.dataframe(df_liq, width='stretch', hide_index=True)  # type: ignore
     if st.button("Remove Last Liquor", key="rm_liq"):
         st.session_state["pending_liquors"].pop()
         st.rerun()
 else:
     st.caption("No liquor contributions added yet.")
 
-if st.button("Add Liquor", key="btn_add_liq", use_container_width=True):
+if st.button("Add Liquor", key="btn_add_liq", width='stretch'):
     add_liquor_dialog()
 
 st.divider()
@@ -168,19 +168,19 @@ if mixers:
     df_mix["Volume"] = df_mix["volume"].apply(format_volume_label)
     df_mix = df_mix[["type", "name", "Volume"]]
     df_mix.columns = ["Type", "Brand/Flavor", "Volume"]
-    st.dataframe(df_mix, use_container_width=True, hide_index=True)  # type: ignore
+    st.dataframe(df_mix, width='stretch', hide_index=True)  # type: ignore
     if st.button("Remove Last Mixer", key="rm_mix"):
         st.session_state["pending_mixers"].pop()
         st.rerun()
 else:
     st.caption("No mixer contributions added yet.")
 
-if st.button("Add Mixer", key="btn_add_mix", use_container_width=True):
+if st.button("Add Mixer", key="btn_add_mix", width='stretch'):
     add_mixer_dialog()
 
 st.divider()
 
-submitted = st.button("Submit RSVP", use_container_width=True, type="primary")
+submitted = st.button("Submit RSVP", width='stretch', type="primary")
 
 if submitted:
     if status in ["Yes", "Tentative"] and not selected_days:
