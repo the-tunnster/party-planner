@@ -19,7 +19,12 @@ Do remember to check the notice board every now and then, just in case there are
 </p>                   
                    
 <p>
-Simply sign in, RSVP as you see fit, and I'll see you later! Or not, idk? <br>
+Simply sign in, RSVP as you see fit, and I'll see you later! </br>
+Or not, idk? <br>
 </p>
                    				   				   
 """, unsafe_allow_html=True)
+
+col1, col2 = streamlit.columns([1, 1])
+col1.link_button(label="Instagram DM", url="https://www.instagram.com/the_tunnster/", icon=":material/chat:")
+col2.link_button(label="Call", url="tel:+918767236939", icon=":material/add_call:")
