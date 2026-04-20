@@ -1,6 +1,11 @@
 import streamlit
 from utilities.db import init_db
 from utilities.auth import sidebar_login_logout
+from utilities.util import getConfig
+
+# Pre-warm caches
+getConfig("beverage_lists")
+getConfig("when_and_where")
 
 init_db()
 sidebar_login_logout()

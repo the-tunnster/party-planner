@@ -1,18 +1,22 @@
-from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
+import streamlit as st
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./party.db"
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+@st.cache_resource
+def get_engine():
+    return create_engine(
+        SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    )
+
+engine = get_engine()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
-
+@st.cache_resource
 def init_db():
     # Import all models here to ensure they are registered properly on the metadata
     import models.user                                                  # type: ignore
