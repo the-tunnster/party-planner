@@ -10,3 +10,4 @@ certificates/
 party.db
 
 **/__pycache__/**
+.streamlit/secrets.toml
