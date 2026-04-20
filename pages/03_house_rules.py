@@ -13,11 +13,9 @@ Don't be that guy. </br>
 If you don't know, ask and someone will let you know.
 
 #### Drugs and Narcotics
-<p>
 No drugs in the house at any time. </br>
 That being said, there are some _lovely_ nature walks y'all can do. </br>
 I know some of you are gonna be bummed about this, but I can't be arsed to worry about my neighbours.
-</p>
 Cigarettes, hookahs, and vapes are fine, but you absolutely cannot exhale smoke indoors. </br>
 
 #### General Policies
