@@ -4,12 +4,12 @@
 		"start_date": "22/05/2026",
 		"start_time": "10:00 am",
 		"end_date": "25/05/2026",
-		"end_time": "10:00 pm"
+		"end_time": "12:00 pm"
 	},
 	"where": {
 		"address_line_1": "Villa 55, Della Resorts",
 		"address_line_2": "Kune Village Road",
-		"suburb": "Lovalava",
+		"suburb": "Lonavala",
 		"city": "Pune",
 		"state": "Maharashtra",
 		"zip": "410401",
