@@ -7,7 +7,6 @@ class Mixer(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("user_table.id"))
-    type = Column(String)  # from list of mixers
     name = Column(String, nullable=False)
     volume = Column(Integer, nullable=False)
 
