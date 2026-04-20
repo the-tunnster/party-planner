@@ -3,20 +3,22 @@ import streamlit
 streamlit.header("House Rules", anchor=False)
 streamlit.markdown("""
 <p>
-This page exists just so everyone is on the same page. <br>
+This exists just so everyone is on the same page. <br>
 These rules are gonna stay fixed, unless you're me or Dottie, in which case they can change at any time. <br>
-I don't expect you guys to break any of these rules, but if y'all do, be prepared to be sent home :'( </br>
+I don't expect you guys to break any of these rules, but if y'all do, I'll be really sad :'( </br>
 <p>
             
 #### Most importantly
-Don't be that guy. If you don't know, ask and someone will let you know.
+Don't be that guy. </br>
+If you don't know, ask and someone will let you know.
 
 #### Drugs and Narcotics
 <p>
-No drugs, at all. That includes marijuana. </br>
+No drugs in the house at any time. </br>
+That being said, there are some _lovely_ nature walks y'all can do. </br>
 I know some of you are gonna be bummed about this, but I can't be arsed to worry about my neighbours.
 </p>
-Cigarettes, hookahs, and vapes are fine, but you absolutely cannot exhale indoors. </br>
+Cigarettes, hookahs, and vapes are fine, but you absolutely cannot exhale smoke indoors. </br>
 
 #### General Policies
 No shoes in the house. </br>

@@ -1,6 +1,5 @@
 import streamlit as st
-import json
-import os
+
 import pandas as pd
 from typing import Any, cast
 
@@ -15,7 +14,7 @@ from models.food import Food
 from models.liqour import Liquor
 from models.mixers import Mixer
 
-LIQUOR_VOLUME_OPTIONS = [180, 350, 500, 750, 1000, 2000]
+LIQUOR_VOLUME_OPTIONS = [180, 350, 500, 750, 1000, 1500, 2000]
 MIXER_VOLUME_OPTIONS = [250, 300, 600, 750, 1250, 1750, 2000, 2250]
 FOOD_TYPE_OPTIONS = ["Vegetarian", "Non-Vegetarian"]
 
