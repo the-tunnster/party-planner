@@ -10,7 +10,7 @@ I'm throwing a party, and this is just an over-engineered event invitation syste
 <p>
 				   
 <p>	   
-All the tabs in the sidebar are self-explanotory. <br> 
+All the tabs in the sidebar are self-explanatory. <br> 
 If you can't figure it out though, you can hit me up on a call, but I really hope you won't need to. <br>
 <p>
 
