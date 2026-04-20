@@ -11,3 +11,4 @@ party.db
 
 **/__pycache__/**
 .streamlit/secrets.toml
+.streamlit/config.toml
