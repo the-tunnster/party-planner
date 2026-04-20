@@ -1,4 +1,5 @@
 import streamlit as st
+
 import pandas as pd
 from typing import Any
 
@@ -7,6 +8,8 @@ from utilities.db import get_db
 
 from models.food import Food
 from models.user import User
+
+st.set_page_config(layout="wide")
 
 current_user = require_login()
 
@@ -19,11 +22,10 @@ db = next(get_db())
 all_foods = db.query(Food).join(User).all()
 
 if not all_foods:
-    st.info("The menu is looking a little empty! Go to the RSVP page to add your dishes.")
+    st.info("The menu is looking a little empty! I really don't expect y'all to bring anything, so leave this to me.")
 else:
-    food_data = []
+    food_data: list[dict[str, Any]] = []
     for f in all_foods:
-        # PyLance strict typing workaround for relations
         user: Any = f.user
         food_data.append({
             "Contributor": f"{user.firstname} {user.lastname}",
@@ -34,7 +36,6 @@ else:
 
     df_food = pd.DataFrame(food_data)
     
-    # Calculate overarching metrics
     total_servings = df_food["Servings"].sum()
     total_dishes = len(df_food)
     veg_df = df_food[df_food["Type"] == "Vegetarian"]

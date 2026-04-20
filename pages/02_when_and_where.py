@@ -1,6 +1,9 @@
 import streamlit
 from utilities.util import getConfig
 
+streamlit.set_page_config(layout="wide")
+
+
 time_and_place = getConfig("when_and_where")
 
 streamlit.header("📅 When", anchor=False)
@@ -11,8 +14,9 @@ Till {time_and_place["when"]['end_time']} {time_and_place["when"]['end_date']} <
 </p>       
 
 <p>
-I am going to be there from Friday morning till Sunday evening. <br>
+I'm going to be there from Friday morning till Sunday afternoon. <br>
 I get that ya'll might be busy or have prior commitments, so feel free to drop by whenever, and for how ever long. <br>
+I do expect that Saturday-Sunday will be the choiced time for most, and I'll be planning things around that. <br>
 </p>
 """, unsafe_allow_html=True)
 
@@ -30,7 +34,6 @@ streamlit.markdown(f"""
 
 maps_url = f"https://www.google.com/maps/search/?api=1&query={time_and_place['where']['latitude']},{time_and_place['where']['longitude']}"
 
-# Replace page_link with link_button
 streamlit.link_button(
     label="Check on Maps", 
     url=maps_url, 

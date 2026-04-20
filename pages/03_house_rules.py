@@ -1,21 +1,22 @@
 import streamlit
 
+streamlit.set_page_config(layout="wide")
+
 streamlit.header("House Rules", anchor=False)
 streamlit.markdown("""
 <p>
-This exists just so everyone is on the same page. <br>
+This is just so everyones on the same page. <br>
 These rules are gonna stay fixed, unless you're me or Dottie, in which case they can change at any time. <br>
-I don't expect you guys to break any of these rules, but if y'all do, I'll be really sad :'( </br>
-<p>
+</p>
             
-#### Most importantly
+#### Most Importantly
 Don't be that guy. </br>
-If you don't know, ask and someone will let you know.
+If you don't know, someone will let you know.
 
 #### Drugs and Narcotics
-No drugs in the house at any time. </br>
+No drugs _in_ the house at any time. </br>
 That being said, there are some _lovely_ nature walks y'all can do. </br>
-I know some of you are gonna be bummed about this, but I can't be arsed to worry about my neighbours.
+Some of you are gonna be bummed about this, but I can't be arsed to worry about my neighbours. </br>
 Cigarettes, hookahs, and vapes are fine, but you absolutely cannot exhale smoke indoors. </br>
 
 #### General Policies
@@ -25,7 +26,6 @@ No eating or drinking when you're _in_ the pool. On the terrace is alright. </br
                                       
 You break it, you offer to buy it and I'll tell you its fine. </br>
                    
-You don't _have_ to get me a birthday gift, but if you don't, please be prepared to take a shot at the door. </br>
-
+You don't _have_ to get me a birthday gift, but if you don't, please be prepared to take a 120ml mixed liqour shot at the door. </br>
 """, unsafe_allow_html=True)
 

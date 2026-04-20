@@ -1,6 +1,8 @@
 import streamlit
 from utilities.util import *
 
+streamlit.set_page_config(layout="wide")
+
 streamlit.title("You've been invited! :tada:", anchor=False)
 
 streamlit.markdown("""

@@ -14,6 +14,8 @@ from models.food import Food
 from models.liqour import Liquor
 from models.mixers import Mixer
 
+st.set_page_config(layout="wide")
+
 LIQUOR_VOLUME_OPTIONS = [180, 350, 500, 750, 1000, 1500, 2000]
 MIXER_VOLUME_OPTIONS = [250, 300, 600, 750, 1250, 1750, 2000, 2250]
 FOOD_TYPE_OPTIONS = ["Vegetarian", "Non-Vegetarian"]
@@ -51,7 +53,7 @@ if existing_user and existing_user.rsvp:
 if st.session_state.get("rsvp_hydrated_user") != current_user.email:
     st.session_state["pending_foods"] = [{"type": cast(Food, f).type, "name": cast(Food, f).name, "servings": cast(Food, f).servings} for f in (existing_user.foods if existing_user else [])]  # type: ignore
     st.session_state["pending_liquors"] = [{"type": cast(Liquor, l).type, "brand": cast(Liquor, l).brand, "variant": cast(Liquor, l).variant, "volume": cast(Liquor, l).volume} for l in (existing_user.liquors if existing_user else [])]  # type: ignore
-    st.session_state["pending_mixers"] = [{"type": cast(Mixer, m).type, "name": cast(Mixer, m).name, "volume": cast(Mixer, m).volume} for m in (existing_user.mixers if existing_user else [])]  # type: ignore
+    st.session_state["pending_mixers"] = [{"name": cast(Mixer, m).name, "volume": cast(Mixer, m).volume} for m in (existing_user.mixers if existing_user else [])]  # type: ignore
     st.session_state["rsvp_hydrated_user"] = current_user.email
 
 # --------------------
@@ -92,15 +94,14 @@ def add_liquor_dialog():
 @st.dialog("Add Mixer")
 def add_mixer_dialog():
     with st.form("add_mixer_form", clear_on_submit=True, enter_to_submit=False):
-        mtype = st.selectbox("Mixer Type", mixers_list)
-        mname = st.text_input("Brand / Flavor")
+        mname = st.selectbox("Mixer Name", mixers_list)
         mvolume = st.selectbox("Volume", MIXER_VOLUME_OPTIONS, format_func=format_volume_label)
         if st.form_submit_button("Add Mixer", width='stretch'):
-            if not mname.strip():
-                st.error("Please provide a name/flavor.")
+            if not mname:
+                st.error("Please provide a name.")
             else:
                 st.session_state["pending_mixers"].append({
-                    "type": mtype, "name": mname.strip(), "volume": mvolume
+                    "name": mname, "volume": mvolume
                 })
                 st.rerun()
 
@@ -169,8 +170,8 @@ mixers = st.session_state["pending_mixers"]
 if mixers:
     df_mix = pd.DataFrame(mixers)
     df_mix["Volume"] = df_mix["volume"].apply(format_volume_label)
-    df_mix = df_mix[["type", "name", "Volume"]]
-    df_mix.columns = ["Type", "Brand/Flavor", "Volume"]
+    df_mix = df_mix[["name", "Volume"]]
+    df_mix.columns = ["Mixer Name", "Volume"]
     st.dataframe(df_mix, width='stretch', hide_index=True)  # type: ignore
     if st.button("Remove Last Mixer", key="rm_mix"):
         st.session_state["pending_mixers"].pop()
@@ -227,7 +228,7 @@ if submitted:
                 for l in liquors:
                     db.add(Liquor(user_id=user.id, type=l["type"], brand=l["brand"], variant=l["variant"], volume=l["volume"]))
                 for m in mixers:
-                    db.add(Mixer(user_id=user.id, type=m["type"], name=m["name"], volume=m["volume"]))
+                    db.add(Mixer(user_id=user.id, name=m["name"], volume=m["volume"]))
 
             db.commit()
             
