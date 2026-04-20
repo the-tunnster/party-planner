@@ -25,6 +25,4 @@ Or not, idk? <br>
                    				   				   
 """, unsafe_allow_html=True)
 
-col1, col2 = streamlit.columns([1, 1])
-col1.link_button(label="Instagram DM", url="https://www.instagram.com/the_tunnster/", icon=":material/chat:")
-col2.link_button(label="Call", url="tel:+918767236939", icon=":material/add_call:")
+streamlit.link_button(label="Call", url="tel:+918767236939", icon=":material/add_call:")
