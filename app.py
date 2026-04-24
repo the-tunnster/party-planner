@@ -27,5 +27,5 @@ pages = {
     ]
 }
 
-pg = streamlit.navigation(pages, position="sidebar", expanded=False)
+pg = streamlit.navigation(pages, position="sidebar", expanded=True)
 pg.run()
