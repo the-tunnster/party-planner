@@ -12,8 +12,9 @@ This is also where I'll put any updates to the party scene, so check here to sta
 
 streamlit.subheader("The Theme.", anchor=False)   
 streamlit.markdown("""
-The vibe is beachy and comfortable. </br>
-As long as you're comfortable, I'm comfortable. <br>
+The vibe is mexican, but gang-related. </br>
+Baggy sweatpants + wife beaters + bandanas. <br>
+I'll bring stick-on temporary tattoos, so be prepared to have your arms shaved. </br>
 """, unsafe_allow_html=True)
 
 streamlit.subheader("What I'll be providing.", anchor=False)   
@@ -40,7 +41,8 @@ streamlit.markdown("""
 
 streamlit.subheader("Updates + Changelog", anchor=False)   
 streamlit.markdown("""
-- 2024-06-20: Added the notice board page.   
+- 2024-04-20: Added the notice board page.   
+- 2024-05-03: Updated the theme.
 """, unsafe_allow_html=True)
                                     
                    
