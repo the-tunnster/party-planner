@@ -16,15 +16,19 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+
+def register_models() -> None:
+    import models.user  # type: ignore
+    import models.rsvp  # type: ignore
+    import models.food  # type: ignore
+    import models.liqour  # type: ignore
+    import models.mixers  # type: ignore
+
+
+register_models()
+
 @st.cache_resource
 def init_db():
-    # Import all models here to ensure they are registered properly on the metadata
-    import models.user                                                  # type: ignore
-    import models.rsvp                                                  # type: ignore
-    import models.food                                                  # type: ignore
-    import models.liqour                                                # type: ignore
-    import models.mixers                                                # type: ignore
-    
     Base.metadata.create_all(bind=engine)
 
 
