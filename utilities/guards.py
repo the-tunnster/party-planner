@@ -1,6 +1,6 @@
 import streamlit as st
 from models.user import User
-from utilities.user_mgmt import get_or_create_user
+from utilities.user_mgmt import NewUserAccessClosedError, get_or_create_user
 
 
 def require_login() -> User:
@@ -14,11 +14,16 @@ def require_login() -> User:
     
     # Check if we have the fully featured cached user
     if "user" not in st.session_state or st.session_state["user"] is None or st.session_state["user"].email != current_email:
-        st.session_state["user"] = get_or_create_user(
-            email=current_email,
-            given_name=str(st.user.given_name),
-            family_name=str(st.user.family_name),
-        )
+        try:
+            st.session_state["user"] = get_or_create_user(
+                email=current_email,
+                given_name=str(st.user.given_name),
+                family_name=str(st.user.family_name),
+            )
+        except NewUserAccessClosedError as exc:
+            st.session_state["user"] = None
+            st.error(exc.message)
+            st.stop()
         
     return st.session_state["user"]
 

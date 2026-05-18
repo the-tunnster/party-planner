@@ -1,0 +1,5 @@
+{
+	"allow_new_users": false,
+	"new_user_block_message": "RSVPs are now closed to new guests. If you have already been added to the guest list, you can still sign in and manage your RSVP.",
+	"login_notice": "Sign in is currently limited to guests who are already in the system."
+}
